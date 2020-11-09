@@ -34,6 +34,8 @@ WORKDIR /home/icinga2-user
 
 USER icinga2-user 
 
+EXPOSE 5665
+
 HEALTHCHECK  CMD stat /run/icinga2/icinga2.pid
 
 COPY entrypoint.d/ /entrypoint.d

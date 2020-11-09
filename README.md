@@ -14,6 +14,7 @@
 
 
 ## Current Issues: ##
+- Config in GIT relies on database password being in SCM
  
   
 
@@ -34,4 +35,4 @@ GIT_REPOSITORY              | ""              | String: "git@git...." | MUST be 
 
 
 ## Example command: ##
-  - `docker run -d -p 80:80 -e timezone="America/New_york -v $(pwd)/icingaweb:/etc/icinga2-server  registry.nyeprice.space/docker-icinga2-server/docker-icinga2-server:latest`
+  - ignore this for now
