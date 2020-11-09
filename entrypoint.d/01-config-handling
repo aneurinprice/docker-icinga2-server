@@ -33,5 +33,3 @@ if [ "${CONFIG_MODE}" = "DISK" ]; then
 	echo "COPYING FROM /config"
 	cp -r /config /etc/icinga2
 fi
-
-ls -l /var/lib/icinga2/*
