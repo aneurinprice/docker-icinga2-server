@@ -15,6 +15,7 @@
 
 ## Current Issues: ##
 - Config in GIT relies on database password being in SCM
+- Document /var/lib/icinga2 (Kubernetes secrets too)
  
   
 
