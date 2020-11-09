@@ -15,13 +15,17 @@ if [[ ${CONFIG_MODE} = "GIT" ]]; then
 	# Check if GIT_DEPLOY_KEY is set, If so, write to file
 	if [[ -n "${GIT_IDENTITY_KEY}" ]]; then
 		echo "Detected GIT DEPLOY KEY"
+		echo "copying and fixing permissions"
+		cp ${GIT_IDENTITY_KEY} ./deploy_key
+		chown icinga2-user ./deploy_key
+		chmod 600 ./deploy_key
 	else
 		echo "No GIT IDENTITY KEY Configured"
 		exit 1
 	fi
 
 	# Clone the Repoistory
-	GIT_SSH_COMMAND='ssh -i ${GIT_IDENTITY_KEY} -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' git clone ${GIT_REPOSITORY} /etc/icinga2
+	GIT_SSH_COMMAND='ssh -i ./deploy_key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no' git clone ${GIT_REPOSITORY} /etc/icinga2
 fi
 
 if [ "${CONFIG_MODE}" = "DISK" ]; then
