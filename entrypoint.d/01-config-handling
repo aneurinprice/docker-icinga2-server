@@ -15,6 +15,8 @@ if [[ ${CONFIG_MODE} = "GIT" ]]; then
 	# Check if GIT_DEPLOY_KEY is set, If so, write to file
 	if [[ -n "${GIT_IDENTITY_KEY}" ]]; then
 		echo "Detected GIT DEPLOY KEY"
+		ls -l /
+		ls -l /indentity	
 		echo "copying and fixing permissions"
 		cp ${GIT_IDENTITY_KEY} ./deploy_key
 		chown icinga2-user ./deploy_key
