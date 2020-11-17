@@ -8,6 +8,7 @@ ENV CONFIG_MODE=Disk
 RUN apk add --no-cache --repository "http://dl-cdn.alpinelinux.org/alpine/edge/main" \
 	acl \
 	bash \
+	curl \
 	git \
 	icinga2 \
 	openssh \	
@@ -28,7 +29,11 @@ RUN apk add --no-cache --repository "http://dl-cdn.alpinelinux.org/alpine/edge/m
   # Empty /etc/icinga2
   rm -rf /etc/icinga2/*; \
   # Change ownership of /etc/icinga2 (This is due to setfacl behavior between dockerfile and running. Will look into this later)
-  chown icinga2-user /etc/icinga2
+  chown icinga2-user /etc/icinga2; \
+  # Install the latest version of Kubectl and move to /usr/local/bin
+  curl "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl" -o /usr/local/bin/kubectl; \
+  chmod +x /usr/local/bin/kubectl
+  
 
 WORKDIR /home/icinga2-user
 
